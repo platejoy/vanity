@@ -67,10 +67,10 @@ module Vanity
           @vanity_identity = params[:_identity]
           cookies[Vanity.configuration.cookie_name] = build_vanity_cookie(@vanity_identity)
           @vanity_identity
-        elsif cookies[Vanity.configuration.cookie_name]
-          @vanity_identity = cookies[Vanity.configuration.cookie_name]
         elsif identity = vanity_identity_from_method(vanity_identity_method)
           @vanity_identity = identity
+        elsif cookies[Vanity.configuration.cookie_name]
+          @vanity_identity = cookies[Vanity.configuration.cookie_name]
         elsif response # everyday use
           @vanity_identity = cookies[Vanity.configuration.cookie_name] || SecureRandom.hex(16)
           cookies[Vanity.configuration.cookie_name] = build_vanity_cookie(@vanity_identity)
